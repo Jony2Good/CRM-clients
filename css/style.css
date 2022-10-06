@@ -1,0 +1,749 @@
+@font-face {
+  font-family: "Open-sans", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  src: local(""), url("../fonts/OpenSans-Regular.woff2") format("woff2"),
+    url("../fonts/OpenSans-Regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Open-sans", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  src: local(""), url("../fonts/OpenSans-SemiBold.woff2") format("woff2"),
+    url("../fonts/OpenSans-SemiBold.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Open-sans", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  src: local(""), url("../fonts/OpenSans-Bold.woff2") format("woff2"),
+    url("../fonts/OpenSans-Bold.woff") format("woff");
+}
+
+:root {
+  --main-color: #9873ff;
+  --txt-grey: #b0b0b0;
+  --txt-black: #333333;
+  --btn-hover: #7b61ff;
+  --grey: #c8c5d1;
+  --grey-light: #e7e5eb;
+  --grey-super-light: #f4f3f6;
+  --color-white: #ffffff;
+  --color-table: #f5f5f5;
+  --color-orange: #f06a4d;
+  --color-contact: rgba(200, 197, 209, 0.5);
+}
+
+body {
+  background: #2c3e50;
+}
+a {
+  text-decoration: none;
+}
+
+.list-reset {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+.btn {
+  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out,
+    border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+.btn-reset {
+  padding: 0;
+  margin: 0;
+  border: none;
+  background-color: transparent;
+}
+.btn-reset:focus {
+  box-shadow: none;
+}
+
+.main-text {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 19px;
+}
+.container-1024 {
+  max-width: 1024px;
+  margin: 0 auto;
+}
+
+.color-main {
+  background-color: var(--color-table);
+}
+/* таблица------------------ */
+.table-title {
+  font-family: "Open-sans", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: var(--txt-grey);
+}
+.active-arrow {
+  transition: color 0.3s ease-in-out;
+}
+.active-arrow:hover {
+  color: var(--txt-black);
+}
+
+.active-arrow:active {
+  color: var(--main-color);
+}
+
+.active-arrow::after {
+  content: "";
+  display: inline-block;
+  margin-left: 5px;
+  width: 10px;
+  height: 10px;
+  background: url("../img/vector.svg") center / 100% no-repeat;
+  opacity: 0.5;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.active-arrow:hover::after,
+.active-arrow:active::after {
+  opacity: 1;
+}
+
+.active-arrow.is-active::after {
+  transform: rotate(180deg);
+  opacity: 1;
+}
+
+/* кнопка Добавить клиента----------- */
+.btn-text {
+  padding: 12.5px 26.5px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 19px;
+}
+
+.btn-main {
+  color: var(--main-color);
+  border-color: var(--main-color);
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-img::before {
+  content: "";
+  margin-right: 10px;
+  vertical-align: middle;
+  transform: translateY(-2px);
+  display: inline-block;
+  width: 22px;
+  height: 16px;
+  background: url("../img/addclient.svg") center / 100% no-repeat;
+}
+
+.btn-main:hover {
+  color: var(--color-white);
+  background-color: var(--btn-hover);
+  opacity: 0.5;
+}
+.btn-main:focus {
+  outline: none;
+  box-shadow: none;
+}
+.btn-main:active {
+  opacity: 1;
+}
+
+.btn-img:hover::before {
+  background: url("../img/addclient-white.svg");
+}
+
+/* активные классы, используемые в JS---------- */
+.is-active {
+  color: var(--main-color);
+}
+.is-colored {
+  color: var(--main-color);
+}
+
+.active-arrow.is-colored::after {
+  opacity: 1;
+}
+
+/* модальное окно "Новый клиент"--------- */
+.modal-container {
+  display: block;
+  opacity: 0;
+}
+
+.modal-dialog {
+  max-width: 450px;
+  max-height: 400px;
+}
+
+.modal-header {
+  border-bottom: none;
+}
+.modal-footer {
+  border-top: none;
+}
+.modal-title {
+  padding-left: 10px;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 25px;
+}
+.modal-body-layout {
+  padding: unset;
+}
+.modal-wrap {
+  padding-left: 30px;
+  background-color: var(--color-contact);
+}
+.modal-btn {
+  position: relative;
+  padding: 8px;
+  color: var(--txt-black);
+  border: none;
+  transition: color 0.3s linear;
+}
+.modal-btn::before {
+  content: "";
+  position: absolute;
+  top: 11px;
+  left: -8px;
+  width: 14px;
+  height: 14px;
+  background: url("../img/plus-transparent.svg") center / 100% no-repeat;
+  transition: background 0.3s linear;
+}
+
+.modal-btn:hover {
+  color: var(--main-color);
+}
+.modal-btn:focus {
+  box-shadow: none;
+}
+
+.modal-btn:hover::before {
+  background: url("../img/plus-painted.svg");
+}
+
+.modal-footer-save {
+  padding: 12.5px 35px;
+  color: var(--color-white);
+  background-color: var(--main-color);
+}
+.modal-label > span {
+  color: var(--main-color);
+}
+.modal-inner {
+  position: relative;
+  padding: 0 1rem;
+  flex-direction: column;
+}
+.modal-inner input {
+  text-transform: capitalize;
+}
+.modal-position {
+  transform: translateY(-150%);
+  animation: trans 0.3s linear 0.3s forwards;
+}
+.modal-position-delete {
+  transform: translateY(100%);
+}
+
+.modal-visible {
+  background-color: rgba(51, 51, 51, 0.5);
+  animation: anime 0.3s linear 0.3s forwards;
+}
+
+@keyframes anime {
+  0% {
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.3;
+  }
+  60% {
+   
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* анимация выпадения модалки сверху */
+@keyframes trans {
+  0% {
+    transform: translateY(-150%);
+   
+  }
+  30% {
+    transform: translateY(-50%);
+    
+  }
+  60% {
+    transform: translateY(-10%);
+    
+  }
+  100% {
+    transform: translateY(10%);
+    
+  }
+}
+
+.form-control::placeholder {
+  color: var(--txt-grey);
+}
+
+.modal-footer-save:hover {
+  color: var(--color-white);
+  opacity: 0.8;
+}
+.modal-footer-save:active {
+  opacity: 1;
+  box-shadow: none;
+  background-color: var(--btn-hover);
+}
+.modal-footer-save:focus {
+  box-shadow: none;
+}
+
+.modal-underline {
+  border-bottom: 1px solid var(--txt-black);
+}
+
+.modal-footer-dismiss {
+  opacity: 0.5;
+  padding: unset;
+  transition: opacity 0.3s linear;
+}
+
+.modal-footer-dismiss:hover {
+  opacity: 1;
+}
+
+.modal-footer-dismiss:active,
+.modal-footer-dismiss:focus {
+  box-shadow: none;
+}
+
+.modal-input {
+  border: none;
+  border-bottom: 1px solid #ced4da;
+}
+
+.form-group {
+  transition: all 0.3s linear;
+}
+
+.modal-label {
+  position: relative;
+  padding-left: 10px;
+  font-family: "Open-sans", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 19px;
+  color: var(--txt-grey);
+  transform: translateY(-28px);
+  transform-origin: 0 0;
+  transition: all 0.3s linear;
+  z-index: 100;
+}
+
+.modal-inner .form-control::placeholder {
+  color: transparent;
+}
+.modal-form .modal-inner input {
+  width: 100%;
+}
+.form-control:focus {
+  outline: none;
+  box-shadow: none;
+  border-color: var(--btn-hover);
+}
+
+.form-control:focus + .modal-label,
+.form-control:not(:placeholder-shown) + .modal-label {
+  transform: translateY(-50px) scale(0.8);
+}
+
+/* форма c добавлением с контактов---------- */
+.contact {
+  display: flex;
+  align-items: center;
+  padding-top: 25px;
+  max-width: 390px;
+}
+
+.contact__type {
+  position: relative;
+}
+
+.contact__name {
+  z-index: 1;
+  min-width: 123px;
+  position: relative;
+  padding: 10px 12px;
+  padding-right: 31px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  border: 1px solid var(--grey);
+  background-color: var(--grey-super-light);
+  color: var(--txt-black);
+  font-family: "Open sans", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+}
+
+.contact__name::before {
+  content: "";
+  position: absolute;
+  right: 15px;
+  top: 13px;
+  width: 10px;
+  height: 10px;
+  background-image: url("../img/arrow.svg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  transition: transform 0.3s ease-in-out;
+}
+
+.contact__name:hover {
+  background-color: var(--grey-light);
+  transition: background-color 0.3s ease-in-out;
+}
+
+.contact__name:active {
+  background-color: rgba(200, 197, 209, 0.5);
+  transition: background-color 0.3s ease-in-out;
+}
+
+.contact__list--active.contact__name::before {
+  transform: rotate(-180deg);
+  transition: transform 0.3s ease-in-out;
+}
+
+.contact__list {
+  z-index: 2;
+  position: absolute;
+  font-size: 12px;
+  padding: 10px 0 6px;
+  width: 100%;
+  min-width: 123px;
+  top: 36px;
+  left: 0;
+  opacity: 0;
+  visibility: hidden;
+  text-align: start;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+  background-color: var(--grey-super-light);
+  border: 1px solid var(--grey-light);
+}
+
+.contact__list.contact__list--active {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+.contact__item {
+  cursor: pointer;
+  border-bottom: 7px;
+  padding: 5px 0 5px 12px;
+  font-family: "Open sans", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  transition: background-color 0.3s ease-in-out;
+}
+.contact__item:not(:last-child) {
+  margin-bottom: 9px;
+}
+
+.contact__item:hover {
+  transition: background-color 0.3s ease-in-out;
+  background-color: var(--grey-light);
+}
+
+.contact__input {
+  padding-left: 12px;
+  width: 100%;
+  min-height: 38px;
+  display: block;
+  border: 1px solid var(--txt-grey);
+  border-left: none;
+  background-color: transparent;
+}
+.contact__input::placeholder {
+  opacity: 0.5;
+}
+
+.contact__input:focus {
+  outline: none;
+}
+
+.contact__delete {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  align-self: stretch;
+  background-color: var(--grey-light);
+  border: 1px solid var(--txt-grey);
+  transition: all 0.3s linear;
+  color: var(--color-white);
+  background: url("../img/cancel-grey.svg") center center / 60% no-repeat;
+}
+
+.contact__delete:hover {
+  border-color: var(--color-orange);
+  transition: border-color 0.3s ease-in-out;
+  background: url("../img/cancel-red.svg") center center / 75% no-repeat;
+}
+
+.contact__delete:hover .contact-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+.contact__delete .contact-tooltip {
+  min-width: 150px;
+  top: -40px;
+}
+.btn-none {
+  display: none;
+}
+
+.site-tooltip {
+  position: absolute;
+  top: -41px;
+  display: block;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+  padding: 7px 15px;
+  background-color: var(--txt-black);
+}
+
+.site-tooltip::before {
+  content: "";
+  position: absolute;
+  bottom: -9px;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  transform: translateX(-50%);
+  clip-path: polygon(100% 0, 0 0, 51% 100%);
+  background-color: var(--txt-black);
+}
+
+.unvisible {
+ display: none;
+}
+
+/* иконки социальных сетей --------------*/
+.list-group-contacts {
+  max-width: 120px;
+}
+.item-contacts {
+  display: flex;
+  flex-wrap: wrap;
+  width: 120px;
+}
+.item-contacts a {
+  position: relative;
+  margin-right: 7px;
+}
+
+.item-img {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  opacity: 0.5;
+}
+.item-img:hover {
+  opacity: 1;
+}
+
+.phone-img {
+  background-image: url("../img/phone.svg");
+}
+.vk-img {
+  background-image: url("../img/vk.svg");
+}
+.fb-img {
+  background-image: url("../img/fb.svg");
+}
+.mail-img {
+  background-image: url("../img/mail.svg");
+}
+.other-img {
+  background-image: url("../img/user-pic.svg");
+}
+
+/* кнопки изменить и удалить---------------- */
+
+.btn-clients::before {
+  content: "";
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 5px;
+  width: 15px;
+  height: 15px;
+  background: center / 130% no-repeat;
+}
+
+.img-change::before {
+  background-image: url("../img/edit.svg");
+}
+.img-spiner--change::before {
+  background-image: url("../img/img-change-spiner.svg")
+}
+
+.img-delete::before {
+  background-image: url("../img/cancel.svg");
+}
+.img-spiner--delete::before {
+  background-image: url("../img/img-delete-spiner.svg")
+}
+
+.btn-change:hover {
+  color: var(--main-color);
+}
+.btn-delete:hover {
+  color: var(--color-orange);
+}
+/* стили для тултипа */
+.contact-tooltip {
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  width: auto;
+}
+
+.contact-tooltip__type {
+  margin-right: 2px;
+  display: block;
+  color: var(--color-white);
+}
+
+.contact-tooltip__value {
+  display: block;
+  text-decoration: underline;
+  font-weight: 700;
+  color: var(--main-color);
+}
+
+.item-contacts a:hover .contact-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out,
+    transform 0.5s ease-in-out;
+}
+
+.table-layout {
+  position: relative;
+}
+
+/* спиннер---------------- */
+.spiner-contaner {
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: var(--color-white);
+  z-index: 15;
+  align-items: center;
+}
+
+.spiner-body {
+  width: 100px;
+  height: 100px;
+  color: var(--main-color);
+}
+
+/* блок с ошибкой ---------------*/
+.form-error {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-self: center;
+  margin: 0;
+  padding-top: 8px;
+  line-height: 14px;
+  font-size: 10px;
+  color: var(--color-orange);
+}
+
+/*блок со списком в поиске */
+.search-list {
+  position: relative;
+}
+.header-list {
+  position: absolute;
+  width: 100%;
+  z-index: 15;
+}
+
+.show-contacts {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  font-size: 8px;
+  line-height: 12px;
+  border: 1px solid var(--main-color);
+}
+
+.client-btn {
+  display: inline-flex;
+  vertical-align: middle;
+  
+}
+.spiner-icon {
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+}
+
+.spiner-change {
+  border: 0.25em solid var(--main-color);
+  border-right-color: transparent;
+}
+.spiner-delete {
+  border: 0.25em solid var(--color-orange);
+  border-right-color: transparent;
+}
+
+@media screen and (max-width: 1060px) {
+  .container-1024 {
+    min-width: 320px;
+    
+  }
+  .btn-clients {
+    
+    display: inline-flex;
+    
+  }
+  .client-btn {
+    display: inline-block;
+    vertical-align: middle;
+    
+  }
+  .btn-wrap {
+    margin-bottom: 5px;
+  }
+  .name-section {
+    min-width: 200px;
+  }
+}
