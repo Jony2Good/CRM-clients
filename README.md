@@ -12,3 +12,9 @@ https://jony2good.github.io/CRM-clients/
 9. Серверная часть создана на платформе Heroku;
 
 Самое главное! Функционал системы можно легко дополнять и расширять функционал! Программа будет востребована небольшими компаниями для хранения данных своих клиентов. 
+
+# Examples
+![Ex-first](https://user-images.githubusercontent.com/91899278/217208290-68308917-86cc-4a34-a433-23ac6369c413.gif)
+![Ex-second](https://user-images.githubusercontent.com/91899278/217208310-b957e415-5fdc-4ed2-9ff7-2e6915293275.gif)
+![Ex-third](https://user-images.githubusercontent.com/91899278/217208344-473e90e0-2b07-4d87-ab23-632baac132af.gif)
+![Ex-last](https://user-images.githubusercontent.com/91899278/217208365-bb8af45b-d62f-415e-be40-cf16bf1f1b35.gif)
